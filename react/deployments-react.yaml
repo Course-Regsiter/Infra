@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-app
+  labels:
+    app: react-app
+spec:
+  selector:
+    matchLabels:
+      app: react-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: react-app
+    spec:
+      containers:
+        - name: react-app
+          image: 192.168.1.10:8443/react-app
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 50m
+            requests:
+              cpu: 10m

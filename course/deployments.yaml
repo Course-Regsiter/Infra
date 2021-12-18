@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-course-app
+  labels:
+    app: node-course-app
+spec:
+  selector:
+    matchLabels:
+      app: node-course-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-course-app
+    spec:
+      containers:
+        - name: node-course-app
+          image: 192.168.1.10:8443/nodecourse-img
+          ports:
+            - containerPort: 4000
+          resources:
+            limits:
+              cpu: 100m
+            requests:
+              cpu: 50m

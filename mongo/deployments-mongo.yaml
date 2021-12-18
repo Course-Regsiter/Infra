@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-server
+  labels:
+    app: mongo-server
+spec:
+  selector:
+    matchLabels:
+      app: mongo-server
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mongo-server
+    spec:
+      containers:
+        - name: mongo-server
+          image: mongo
+          ports:
+            - containerPort: 27017
+          resources:
+            limits:
+              cpu: 100m
+            requests:
+              cpu: 50m

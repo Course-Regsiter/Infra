@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-auth-app
+  labels:
+    app: node-auth-app
+spec:
+  selector:
+    matchLabels:
+      app: node-auth-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-auth-app
+    spec:
+      containers:
+        - name: node-auth-app
+          image: 192.168.1.10:8443/nodeauth-img
+          ports:
+            - containerPort: 4001
+          resources:
+            limits:
+              cpu: 50m
+            requests:
+              cpu: 10m
